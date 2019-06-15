@@ -8,6 +8,7 @@ ALL_TARGETS=host-local robot-local
 CC_SRCS!=ls *.cc
 ALL_HDRS!=ls *.h
 SPECIFIC_LIBS=-lguunits
+LOCAL=_LOCAL
 
 .include "../../mk/c++17.mk"
 
