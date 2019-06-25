@@ -59,7 +59,6 @@
 #ifndef VISIONCONTROLLER_H
 #define VISIONCONTROLLER_H
 
-#include <stdlib.h>
 #include <stdbool.h>
 #include <functional>
 #include "VisionGateway.h"
@@ -77,9 +76,9 @@ struct VisionController
 
         VisionController()
         {
-            this->_fetchResult = []() -> Result { exit(EXIT_FAILURE); };
-            this->_hasNewResult = [](){ return false; };
-            this->_update = [](){};
+            this->_fetchResult = NULLPTR;
+            this->_hasNewResult = NULLPTR;
+            this->_update = NULLPTR;
         }
 
         VisionController(

@@ -1,5 +1,5 @@
 /*
- * VisionController.cc 
+ * EdgeGateway.cc 
  * guvision_utils 
  *
  * Created by Callum McColl on 25/06/2019.
@@ -56,21 +56,16 @@
  *
  */
 
-#include "VisionController.h"
-#include "CoordinateGateway.h"
 #include "EdgeGateway.h"
 
-template<>
-CoordinateGateway VisionController<Coordinate>::createGateway()
+
+
+Edge EdgeGateway::fetchEdge()
 {
-    return CoordinateGateway(this->_fetchResult, this->_hasNewResult);
+    return fetchResult();
 }
 
-template<>
-EdgeGateway VisionController<Edge>::createGateway()
+bool EdgeGateway::hasNewEdge()
 {
-    return EdgeGateway(this->_fetchResult, this->_hasNewResult);
+    return hasNewResult();
 }
-
-template struct VisionController<Coordinate>;
-template struct VisionController<Edge>;

@@ -1,5 +1,5 @@
 /*
- * EdgeGateway.h 
+ * CoordinateGateway.cc 
  * guvision_utils 
  *
  * Created by Callum McColl on 25/06/2019.
@@ -56,20 +56,14 @@
  *
  */
 
-#ifndef EDGEGATEWAY_H
-#define EDGEGATEWAY_H
+#include "CoordinateGateway.h"
 
-#include <guunits/Edge.h>
-#include <stdbool.h>
-#include "VisionGateway.h"
-
-struct EdgeGateway: VisionGateway<Edge>
+Coordinate CoordinateGateway::fetchCoordinate()
 {
+    return fetchResult();
+}
 
-    Edge fetchEdge();
-
-    bool hasNewEdge();
-
-};
-
-#endif  /* EDGEGATEWAY_H */
+bool CoordinateGateway::hasNewCoordinate()
+{
+    return hasNewResult();
+}
