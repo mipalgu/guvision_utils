@@ -61,39 +61,24 @@
 
 #include <stdbool.h>
 #include <functional>
+#include <guunits/Coordinate.h>
 
-template <class Result>
 struct VisionGateway {
 
     private:
-        std::function<Result()> _fetchResult;
-        std::function<bool()> _hasNewResult;
-        Result cachedResult;
+        std::function<Coordinate()> _fetchCoordinate;
+        std::function<bool()> _hasNewCoordinate;
+        Coordinate cachedCoordinate;
 
     public:
 
-        VisionGateway()
-        {
-            this->_fetchResult = []() { return Result(0, 0); };
-            this->_hasNewResult = []() { return false; };
-        }
+        VisionGateway();
 
-        VisionGateway(std::function<Result()> fetchResult, std::function<bool()> hasNewResult): _fetchResult(fetchResult), _hasNewResult(hasNewResult) {}
+        VisionGateway(std::function<Coordinate()> fetchCoordinate, std::function<bool()> hasNewCoordinate);
 
-        Result fetchResult()
-        {
-            return this->cachedResult;
-        }
+        Coordinate fetchCoordinate();
 
-        bool hasNewResult()
-        {
-            if (!this->_hasNewResult())
-            {
-                return false;
-            }
-            this->cachedResult = this->_fetchResult();
-            return true;
-        }
+        bool hasNewCoordinate();
 
 };
 

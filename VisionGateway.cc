@@ -1,14 +1,8 @@
 /*
- * VisionController.cc 
-<<<<<<< HEAD
- * guvision_utils 
- *
- * Created by Callum McColl on 25/06/2019.
-=======
+ * VisionGateway.cc 
  * guunits 
  *
  * Created by Callum McColl on 10/06/2019.
->>>>>>> parent of f06d34085... Converted VisionController and VisionGateway to template structs
  * Copyright © 2019 Callum McColl. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -62,28 +56,30 @@
  *
  */
 
-#include "VisionController.h"
-#include <stdlib.h>
+#include "VisionGateway.h"
 
-VisionController::VisionController()
+VisionGateway::VisionGateway()
 {
-    this->_fetchCoordinate = []() -> Coordinate{ exit(EXIT_FAILURE); };
-    this->_hasNewCoordinate = [](){ return false; };
-    this->_update = [](){};
+    this->_fetchCoordinate = []() { return Coordinate(0, 0); };
+    this->_hasNewCoordinate = []() { return false; };
 }
 
-VisionController::VisionController(
-    std::function<Coordinate()> fetchCoordinate,
-    std::function<bool()> hasNewCoordinate,
-    std::function<void()> update
-): _fetchCoordinate(fetchCoordinate), _hasNewCoordinate(hasNewCoordinate), _update(update) {}
+VisionGateway::VisionGateway(
+        std::function<Coordinate()> fetchCoordinate,
+        std::function<bool()> hasNewCoordinate
+    ): _fetchCoordinate(fetchCoordinate), _hasNewCoordinate(hasNewCoordinate) {}
 
-VisionGateway VisionController::createGateway()
+Coordinate VisionGateway::fetchCoordinate()
 {
-    return VisionGateway(this->_fetchCoordinate, this->_hasNewCoordinate);
+    return this->cachedCoordinate;
 }
 
-void VisionController::update()
+bool VisionGateway::hasNewCoordinate()
 {
-    this->_update();
+    if (!this->_hasNewCoordinate())
+    {
+        return false;
+    }
+    this->cachedCoordinate = this->_fetchCoordinate();
+    return true;
 }
