@@ -60,15 +60,23 @@
 #define EDGEGATEWAY_H
 
 #include <guunits/Edge.h>
-#include <stdbool.h>
 #include "VisionGateway.h"
 
-struct EdgeGateway: VisionGateway<Edge>
+typedef VisionGateway<Edge> EdgeGateway;
+
+template<>
+struct VisionGateway<Edge>
 {
 
-    Edge fetchEdge();
+    Edge fetchEdge()
+    {
+        return fetchResult();
+    }
 
-    bool hasNewEdge();
+    bool hasNewEdge()
+    {
+        return hasNewResult();
+    }
 
 };
 
