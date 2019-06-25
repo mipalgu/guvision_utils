@@ -59,16 +59,24 @@
 #ifndef COORDINATEGATEWAY_H
 #define COORDINATEGATEWAY_H
 
-#include <stdbool.h>
 #include <guunits/Coordinate.h>
 #include "VisionGateway.h"
 
-struct CoordinateGateway: VisionGateway<Coordinate>
+typedef VisionGateway<Coordinate> CoordinateGateway;
+
+template<>
+struct VisionGateway<Coordinate>
 {
 
-    Coordinate fetchCoordinate();
+    Coordinate fetchCoordinate()
+    {
+        return fetchResult();
+    }
 
-    bool hasNewCoordinate();
+    bool hasNewCoordinate()
+    {
+        return hasNewResult();
+    }
 
 };
 
