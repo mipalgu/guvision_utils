@@ -60,7 +60,7 @@
 
 CoordinateGateway::CoordinateGateway()
 {
-    this->_fetchCoordinate = []() { return Coordinate(0, 0); };
+    this->_fetchCoordinate = []() -> Coordinate { exit(EXIT_FAILURE); };
     this->_hasNewCoordinate = []() { return false; };
 }
 
