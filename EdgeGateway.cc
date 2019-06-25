@@ -1,5 +1,5 @@
 /*
- * EdgeController.h 
+ * EdgeGateway.cc 
  * guvision_utils 
  *
  * Created by Callum McColl on 25/06/2019.
@@ -56,38 +56,30 @@
  *
  */
 
-#ifndef EDGECONTROLLER_H
-#define EDGECONTROLLER_H
-
-#include <stdlib.h>
-#include <stdbool.h>
-#include <functional>
-#include <guunits/Edge.h>
 #include "EdgeGateway.h"
 
-struct EdgeController
+EdgeGateway::EdgeGateway()
 {
+    this->_fetchEdge = []() -> Edge { exit(EXIT_FAILURE); };
+    this->_hasNewEdge = []() { return false; };
+}
 
-    private:
-        std::function<Edge()> _fetchEdge;
-        std::function<bool()> _hasNewEdge;
-        std::function<void()> _update;
+EdgeGateway::EdgeGateway(
+        std::function<Edge()> fetchEdge,
+        std::function<bool()> hasNewEdge
+    ): _fetchEdge(fetchEdge), _hasNewEdge(hasNewEdge) {}
 
-    public:
+Edge EdgeGateway::fetchEdge()
+{
+    return this->cachedEdge;
+}
 
-        EdgeController();
-
-        EdgeController(
-            std::function<Edge()> fetchEdge,
-            std::function<bool()> hasNewEdge,
-            std::function<void()> update
-        );
-
-        EdgeGateway createGateway();
-
-        void update();
-
-};
-
-
-#endif  /* EDGECONTROLLER_H */
+bool EdgeGateway::hasNewEdge()
+{
+    if (!this->_hasNewEdge())
+    {
+        return false;
+    }
+    this->cachedEdge = this->_fetchEdge();
+    return true;
+}

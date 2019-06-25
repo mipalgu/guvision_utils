@@ -59,25 +59,29 @@
 #ifndef EDGEGATEWAY_H
 #define EDGEGATEWAY_H
 
+#include <stdbool.h>
+#include <functional>
 #include <guunits/Edge.h>
-#include "VisionGateway.h"
 
-typedef VisionGateway<Edge> EdgeGateway;
+struct EdgeGateway {
 
-template<>
-struct VisionGateway<Edge>
-{
+    private:
+        std::function<Edge()> _fetchEdge;
+        std::function<bool()> _hasNewEdge;
+        Edge cachedEdge;
 
-    Edge fetchEdge()
-    {
-        return fetchResult();
-    }
+    public:
 
-    bool hasNewEdge()
-    {
-        return hasNewResult();
-    }
+        EdgeGateway();
+
+        EdgeGateway(std::function<Edge()> fetchEdge, std::function<bool()> hasNewEdge);
+
+        Edge fetchEdge();
+
+        bool hasNewEdge();
 
 };
+
+
 
 #endif  /* EDGEGATEWAY_H */
