@@ -59,25 +59,28 @@
 #ifndef COORDINATEGATEWAY_H
 #define COORDINATEGATEWAY_H
 
+#include <stdbool.h>
+#include <functional>
 #include <guunits/Coordinate.h>
-#include "VisionGateway.h"
 
-typedef VisionGateway<Coordinate> CoordinateGateway;
+struct CoordinateGateway {
 
-template<>
-struct VisionGateway<Coordinate>
-{
+    private:
+        std::function<Coordinate()> _fetchCoordinate;
+        std::function<bool()> _hasNewCoordinate;
+        Coordinate cachedCoordinate;
 
-    Coordinate fetchCoordinate()
-    {
-        return fetchResult();
-    }
+    public:
 
-    bool hasNewCoordinate()
-    {
-        return hasNewResult();
-    }
+        CoordinateGateway();
+
+        CoordinateGateway(std::function<Coordinate()> fetchCoordinate, std::function<bool()> hasNewCoordinate);
+
+        Coordinate fetchCoordinate();
+
+        bool hasNewCoordinate();
 
 };
+
 
 #endif  /* COORDINATEGATEWAY_H */

@@ -1,14 +1,8 @@
 /*
- * VisionController.cc 
-<<<<<<< HEAD
+ * CoordinateController.cc 
  * guvision_utils 
  *
  * Created by Callum McColl on 25/06/2019.
-=======
- * guunits 
- *
- * Created by Callum McColl on 10/06/2019.
->>>>>>> parent of f06d34085... Converted VisionController and VisionGateway to template structs
  * Copyright © 2019 Callum McColl. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -62,28 +56,29 @@
  *
  */
 
-#include "VisionController.h"
+#include "CoordinateController.h"
+
 #include <stdlib.h>
 
-VisionController::VisionController()
+CoordinateController::CoordinateController()
 {
     this->_fetchCoordinate = []() -> Coordinate{ exit(EXIT_FAILURE); };
     this->_hasNewCoordinate = [](){ return false; };
     this->_update = [](){};
 }
 
-VisionController::VisionController(
+CoordinateController::CoordinateController(
     std::function<Coordinate()> fetchCoordinate,
     std::function<bool()> hasNewCoordinate,
     std::function<void()> update
 ): _fetchCoordinate(fetchCoordinate), _hasNewCoordinate(hasNewCoordinate), _update(update) {}
 
-VisionGateway VisionController::createGateway()
+CoordinateGateway CoordinateController::createGateway()
 {
-    return VisionGateway(this->_fetchCoordinate, this->_hasNewCoordinate);
+    return CoordinateGateway(this->_fetchCoordinate, this->_hasNewCoordinate);
 }
 
-void VisionController::update()
+void CoordinateController::update()
 {
     this->_update();
 }

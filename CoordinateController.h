@@ -59,8 +59,34 @@
 #ifndef COORDINATECONTROLLER_H
 #define COORDINATECONTROLLER_H
 
-#include "VisionController.h"
+#include <stdlib.h>
+#include <stdbool.h>
+#include <functional>
+#include <guunits/Coordinate.h>
+#include "CoordinateGateway.h"
 
-struct CoordinateController: VisionController<Coordinate> {};
+struct CoordinateController
+{
+
+    private:
+        std::function<Coordinate()> _fetchCoordinate;
+        std::function<bool()> _hasNewCoordinate;
+        std::function<void()> _update;
+
+    public:
+
+        CoordinateController();
+
+        CoordinateController(
+            std::function<Coordinate()> fetchCoordinate,
+            std::function<bool()> hasNewCoordinate,
+            std::function<void()> update
+        );
+
+        CoordinateGateway createGateway();
+
+        void update();
+
+};
 
 #endif  /* COORDINATECONTROLLER_H */
