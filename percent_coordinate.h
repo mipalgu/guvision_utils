@@ -56,8 +56,8 @@
  *
  */
 
-#ifndef INDEPENDANT_IMAGE_COORDINATE_H
-#define INDEPENDANT_IMAGE_COORDINATE_H
+#ifndef PERCENT_COORDINATE_H
+#define PERCENT_COORDINATE_H
 
 #include <guunits/guunits.h>
 #include <stdbool.h>
@@ -98,4 +98,4 @@ bool gu_percent_coordinate_equals(const gu_percent_coordinate, const gu_percent_
 };
 #endif
 
-#endif  /* INDEPENDANT_IMAGE_COORDINATE_H */
+#endif  /* PERCENT_COORDINATE_H */

@@ -56,8 +56,8 @@
  *
  */
 
-#ifndef DEPENDANT_COORD_H
-#define DEPENDANT_COORD_H
+#ifndef PIXEL_COORDINATE_H
+#define PIXEL_COORDINATE_H
 
 #include <guunits/guunits.h>
 #include <stdbool.h>
@@ -108,4 +108,4 @@ bool gu_pixel_coordinate_equals(const gu_pixel_coordinate lhs, const gu_pixel_co
 };
 #endif
 
-#endif  /* DEPENDANT_COORD_H */
+#endif  /* PIXEL_COORDINATE_H */
