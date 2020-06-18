@@ -1,5 +1,5 @@
 /*
- * pixel_coordinate.h 
+ * conversions.c 
  * guvision_utils 
  *
  * Created by Callum McColl on 18/06/2020.
@@ -56,53 +56,19 @@
  *
  */
 
-#ifndef DEPENDANT_COORD_H
-#define DEPENDANT_COORD_H
+#include "conversions.h"
 
 #include <guunits/guunits.h>
 
-#ifdef __cplusplus
-extern "C" {
-#endif
 
-/**
- * A `pixel_image_coordinate` represents the coordinate of a pixel
- * within an image.
- */
-typedef struct pixel_image_coordinate {
+percent_coordinate px_coord_to_pct_coord(const pixel_coordinate coord)
+{
+    const pixels_t maxX = px_u_to_px_t(coord.res_width) - 1;
+    const pixels_t maxY = px_u_to_px_t(coord.res_height) - 1;
+    const float x = px_t_to_f(2 * coord.x - (maxX % 2)) / px_t_to_f(maxX);
+    const float y = px_t_to_f(2 * coord.y - (maxY % 2)) / px_t_to_f(maxY);
+    const percent_coordinate newCoord = { f_to_pct_f(x), f_to_pct_f(y) };
+    return newCoord;
+}
 
-    /**
-     * The x coordinate of the pixel within the image.
-     *
-     * The x coordinate must be in the range of:
-     *
-     *  -floor((res_width - 1) / 2) <= x <= ceil((res_width - 1) / 2)
-     */
-    pixels_t x;
 
-    /**
-     * The y coordinate of the pixel within the image.
-     *
-     * The y coordinate must be in the range of:
-     *
-     *  -floor((res_height - 1) / 2) <= x <= ceil((res_height - 1) / 2)
-     */
-    pixels_t y;
-
-    /**
-     * The width of the resolution of the image.
-     */
-    pixels_u res_width;
-
-    /**
-     * The height of the resolution of the image.
-     */
-    pixels_u res_height;
-
-} pixel_coordinate;
-
-#ifdef __cplusplus
-};
-#endif
-
-#endif  /* DEPENDANT_COORD_H */

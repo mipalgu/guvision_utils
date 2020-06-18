@@ -61,6 +61,10 @@
 
 #include <guunits/guunits.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * A `percent_image_coordinate` represents the coordinate of a pixel
  * within an image.
@@ -86,5 +90,9 @@ typedef struct percent_image_coordinate {
     percent_f y;
 
 } percent_coordinate;
+
+#ifdef __cplusplus
+};
+#endif
 
 #endif  /* INDEPENDANT_IMAGE_COORDINATE_H */

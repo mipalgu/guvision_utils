@@ -1,5 +1,5 @@
 /*
- * pixel_coordinate.h 
+ * conversions.h 
  * guvision_utils 
  *
  * Created by Callum McColl on 18/06/2020.
@@ -56,53 +56,20 @@
  *
  */
 
-#ifndef DEPENDANT_COORD_H
-#define DEPENDANT_COORD_H
+#ifndef CONVERSIONS_H
+#define CONVERSIONS_H
 
-#include <guunits/guunits.h>
+#include "pixel_coordinate.h"
+#include "percent_coordinate.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-/**
- * A `pixel_image_coordinate` represents the coordinate of a pixel
- * within an image.
- */
-typedef struct pixel_image_coordinate {
-
-    /**
-     * The x coordinate of the pixel within the image.
-     *
-     * The x coordinate must be in the range of:
-     *
-     *  -floor((res_width - 1) / 2) <= x <= ceil((res_width - 1) / 2)
-     */
-    pixels_t x;
-
-    /**
-     * The y coordinate of the pixel within the image.
-     *
-     * The y coordinate must be in the range of:
-     *
-     *  -floor((res_height - 1) / 2) <= x <= ceil((res_height - 1) / 2)
-     */
-    pixels_t y;
-
-    /**
-     * The width of the resolution of the image.
-     */
-    pixels_u res_width;
-
-    /**
-     * The height of the resolution of the image.
-     */
-    pixels_u res_height;
-
-} pixel_coordinate;
+percent_coordinate px_coord_to_pct_coord(pixel_coordinate);
 
 #ifdef __cplusplus
 };
 #endif
 
-#endif  /* DEPENDANT_COORD_H */
+#endif  /* CONVERSIONS_H */

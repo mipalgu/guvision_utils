@@ -1,6 +1,6 @@
 /*
- * pixel_coordinate.c 
- * guvision_utils 
+ * conversions_tests.cc 
+ * tests 
  *
  * Created by Callum McColl on 18/06/2020.
  * Copyright © 2020 Callum McColl. All rights reserved.
@@ -56,17 +56,42 @@
  *
  */
 
-#include "pixel_coordinate.h"
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wglobal-constructors"
+#pragma clang diagnostic ignored "-Wmissing-noreturn"
+#pragma clang diagnostic ignored "-Wshift-sign-overflow"
+#pragma clang diagnostic ignored "-Wused-but-marked-unused"
+#pragma clang diagnostic ignored "-Wdeprecated"
+#pragma clang diagnostic ignored "-Wunused-parameter"
+#pragma clang diagnostic ignored "-Wsign-compare"
+#pragma clang diagnostic ignored "-Wzero-as-null-pointer-constant"
+#pragma clang diagnostic ignored "-Wfloat-equal"
 
-#include <guunits/guunits.h>
+#include <gtest/gtest.h>
 
+#include <gu_util.h>
+#include "../conversions.h"
 
-percent_coordinate pixel_coordinate_to_percent_coordinate(const pixel_coordinate coord)
-{
-    const pixels_t maxX = px_u_to_px_t(coord.res_width) - 1;
-    const pixels_t maxY = px_u_to_px_t(coord.res_height) - 1;
-    const float x = px_t_to_f(2 * coord.x - (maxX % 2)) / px_t_to_f(maxX);
-    const float y = px_t_to_f(2 * coord.y - (maxY % 2)) / px_t_to_f(maxY);
-    const percent_coordinate newCoord = { f_to_pct_f(x), f_to_pct_f(y) };
-    return newCoord;
-}
+namespace CGTEST {
+    
+    class ConversionsTests: public ::testing::Test {
+    protected:
+        
+        virtual void SetUp() {
+        }
+        
+        virtual void TearDown() {
+        }
+
+    };
+
+    TEST_F(ConversionsTests, ConvertsToCorrectPercentCoordinate) {
+        const pixel_coordinate coord = { -959, -539, 1920, 1080 };
+        const percent_coordinate newCoord = px_coord_to_pct_coord(coord);
+        ASSERT_EQ(newCoord.x, -1.0f);
+        ASSERT_EQ(newCoord.y, -1.0f);
+    }
+
+}  // namespace
+
+#pragma clang diagnostic pop
