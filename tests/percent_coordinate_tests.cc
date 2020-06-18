@@ -1,6 +1,6 @@
 /*
- * percent_coordinate.h 
- * guvision_utils 
+ * percent_coordinate_tests.cc 
+ * tests 
  *
  * Created by Callum McColl on 18/06/2020.
  * Copyright © 2020 Callum McColl. All rights reserved.
@@ -56,46 +56,48 @@
  *
  */
 
-#ifndef INDEPENDANT_IMAGE_COORDINATE_H
-#define INDEPENDANT_IMAGE_COORDINATE_H
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wglobal-constructors"
+#pragma clang diagnostic ignored "-Wmissing-noreturn"
+#pragma clang diagnostic ignored "-Wshift-sign-overflow"
+#pragma clang diagnostic ignored "-Wused-but-marked-unused"
+#pragma clang diagnostic ignored "-Wdeprecated"
+#pragma clang diagnostic ignored "-Wunused-parameter"
+#pragma clang diagnostic ignored "-Wsign-compare"
+#pragma clang diagnostic ignored "-Wzero-as-null-pointer-constant"
+#pragma clang diagnostic ignored "-Wfloat-equal"
 
-#include <guunits/guunits.h>
-#include <stdbool.h>
+#include <gtest/gtest.h>
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+#include <gu_util.h>
+#include "../percent_coordinate.h"
 
-/**
- * A `percent_image_coordinate` represents the coordinate of a pixel
- * within an image.
- */
-typedef struct percent_image_coordinate {
+namespace CGTEST {
+    
+    class PercentCoordinateTests: public ::testing::Test {
+    protected:
+        
+        virtual void SetUp() {
+        }
+        
+        virtual void TearDown() {
+        }
 
-    /**
-     * The x coordinate of the pixel within the image as a percentage.
-     *
-     * The x coordinate must be in the range of:
-     *
-     *  -1.0f <= x <= 1.0f
-     */
-    percent_f x;
+    };
 
-    /**
-     * The y coordinate of the pixel within the image as a percentage.
-     *
-     * The y coordinate must be in the range of:
-     *
-     *  -1.0f <= x <= 1.0f
-     */
-    percent_f y;
+    TEST_F(PercentCoordinateTests, Equality) {
+        const percent_coordinate topLeftEdge = { -1.0f, 1.0f };
+        const percent_coordinate topRightEdge = { 1.0f, 1.0f };
+        const percent_coordinate bottomLeftEdge = { -1.0f, -1.0f };
+        const percent_coordinate bottomRightEdge = { 1.0f, -1.0f };
+        const percent_coordinate middle = { 0.0f, 0.0f };
+        ASSERT_TRUE(percent_coordinate_equals(middle, middle, 0.0001));
+        ASSERT_FALSE(percent_coordinate_equals(topLeftEdge, topRightEdge, 0.0001));
+        ASSERT_FALSE(percent_coordinate_equals(topRightEdge, bottomLeftEdge, 0.0001));
+        ASSERT_FALSE(percent_coordinate_equals(bottomLeftEdge, bottomRightEdge, 0.0001));
+        ASSERT_FALSE(percent_coordinate_equals(bottomRightEdge, middle, 0.0001));
+    }
 
-} percent_coordinate;
+}  // namespace
 
-bool percent_coordinate_equals(const percent_coordinate, const percent_coordinate, percent_f);
-
-#ifdef __cplusplus
-};
-#endif
-
-#endif  /* INDEPENDANT_IMAGE_COORDINATE_H */
+#pragma clang diagnostic pop

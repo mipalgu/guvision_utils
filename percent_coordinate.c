@@ -1,8 +1,8 @@
 /*
- * percent_coordinate.h 
+ * percent_coordinate.c 
  * guvision_utils 
  *
- * Created by Callum McColl on 18/06/2020.
+ * Created by Callum McColl on 19/06/2020.
  * Copyright © 2020 Callum McColl. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -56,46 +56,12 @@
  *
  */
 
-#ifndef INDEPENDANT_IMAGE_COORDINATE_H
-#define INDEPENDANT_IMAGE_COORDINATE_H
+#include "percent_coordinate.h"
+#include <math.h>
 
-#include <guunits/guunits.h>
-#include <stdbool.h>
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-/**
- * A `percent_image_coordinate` represents the coordinate of a pixel
- * within an image.
- */
-typedef struct percent_image_coordinate {
-
-    /**
-     * The x coordinate of the pixel within the image as a percentage.
-     *
-     * The x coordinate must be in the range of:
-     *
-     *  -1.0f <= x <= 1.0f
-     */
-    percent_f x;
-
-    /**
-     * The y coordinate of the pixel within the image as a percentage.
-     *
-     * The y coordinate must be in the range of:
-     *
-     *  -1.0f <= x <= 1.0f
-     */
-    percent_f y;
-
-} percent_coordinate;
-
-bool percent_coordinate_equals(const percent_coordinate, const percent_coordinate, percent_f);
-
-#ifdef __cplusplus
-};
-#endif
-
-#endif  /* INDEPENDANT_IMAGE_COORDINATE_H */
+bool percent_coordinate_equals(const percent_coordinate lhs, const percent_coordinate rhs, percent_f tolerance)
+{
+    const bool equalX = fabsf(pct_f_to_f(lhs.x) - pct_f_to_f(rhs.x)) <= pct_f_to_f(tolerance);
+    const bool equalY = fabsf(pct_f_to_f(lhs.y) - pct_f_to_f(rhs.y)) <= pct_f_to_f(tolerance);
+    return equalX && equalY;
+}
