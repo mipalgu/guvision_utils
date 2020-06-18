@@ -126,9 +126,9 @@ namespace CGTEST {
         const percent_coordinate middle = { 0, 0 };
         pixel_equal({ -959, 540, 1920, 1080 }, pct_coord_to_px_coord(topLeftEdge, 1920, 1080));
         pixel_equal({ 960, 540, 1920, 1080 }, pct_coord_to_px_coord(topRightEdge, 1920, 1080));
-        pixel_equal({ -959, -549, 1920, 1080 }, pct_coord_to_px_coord(bottomLeftEdge, 1920, 1080));
+        pixel_equal({ -959, -539, 1920, 1080 }, pct_coord_to_px_coord(bottomLeftEdge, 1920, 1080));
         pixel_equal({ 960, -539, 1920, 1080 }, pct_coord_to_px_coord(bottomRightEdge, 1920, 1080));
-        pixel_equal({ 0, 0 }, pct_coord_to_px_coord(middle, 1920, 1080));
+        pixel_equal({ 1, 1, 1920, 1080 }, pct_coord_to_px_coord(middle, 1920, 1080));
     }
 
 }  // namespace

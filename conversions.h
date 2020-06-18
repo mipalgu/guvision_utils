@@ -67,6 +67,7 @@ extern "C" {
 #endif
 
 percent_coordinate px_coord_to_pct_coord(pixel_coordinate);
+pixel_coordinate pct_coord_to_px_coord(percent_coordinate, pixels_u, pixels_u);
 
 #ifdef __cplusplus
 };
