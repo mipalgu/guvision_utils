@@ -67,10 +67,10 @@ extern "C" {
 #endif
 
 /**
- * A `percent_coordinate` represents the coordinate of a pixel
+ * A `gu_percent_coordinate` represents the coordinate of a pixel
  * within an image.
  */
-typedef struct percent_coordinate {
+typedef struct gu_percent_coordinate {
 
     /**
      * The x coordinate of the pixel within the image as a percentage.
@@ -90,9 +90,9 @@ typedef struct percent_coordinate {
      */
     percent_f y;
 
-} percent_coordinate;
+} gu_percent_coordinate;
 
-bool percent_coordinate_equals(const percent_coordinate, const percent_coordinate, percent_f);
+bool gu_percent_coordinate_equals(const gu_percent_coordinate, const gu_percent_coordinate, percent_f);
 
 #ifdef __cplusplus
 };

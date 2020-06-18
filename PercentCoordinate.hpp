@@ -65,7 +65,7 @@
 
 namespace GU {
 
-    struct PercentCoordinate: private percent_coordinate {
+    struct PercentCoordinate: private gu_percent_coordinate {
 
         PercentCoordinate();
         PercentCoordinate(percent_f, percent_f);

@@ -86,20 +86,20 @@ namespace CGTEST {
     };
 
     TEST_F(PixelCoordinateTests, Equality) {
-        const pixel_coordinate topLeftEdge = { -959, 540, 1920, 1080 };
-        const pixel_coordinate topRightEdge = { 960, 540, 1920, 1080 };
-        const pixel_coordinate bottomLeftEdge = { -959, -539, 1920, 1080 };
-        const pixel_coordinate bottomRightEdge = { 960, -539, 1920, 1080 };
-        const pixel_coordinate middle = { 0, 0, 1920, 1080 };
-        ASSERT_TRUE(pixel_coordinate_equals(topLeftEdge, topLeftEdge));
-        ASSERT_TRUE(pixel_coordinate_equals(topRightEdge, topRightEdge));
-        ASSERT_TRUE(pixel_coordinate_equals(bottomLeftEdge, bottomLeftEdge));
-        ASSERT_TRUE(pixel_coordinate_equals(bottomRightEdge, bottomRightEdge));
-        ASSERT_TRUE(pixel_coordinate_equals(middle, middle));
-        ASSERT_FALSE(pixel_coordinate_equals(topLeftEdge, topRightEdge));
-        ASSERT_FALSE(pixel_coordinate_equals(topRightEdge, bottomLeftEdge));
-        ASSERT_FALSE(pixel_coordinate_equals(bottomLeftEdge, bottomRightEdge));
-        ASSERT_FALSE(pixel_coordinate_equals(bottomRightEdge, middle));
+        const gu_pixel_coordinate topLeftEdge = { -959, 540, 1920, 1080 };
+        const gu_pixel_coordinate topRightEdge = { 960, 540, 1920, 1080 };
+        const gu_pixel_coordinate bottomLeftEdge = { -959, -539, 1920, 1080 };
+        const gu_pixel_coordinate bottomRightEdge = { 960, -539, 1920, 1080 };
+        const gu_pixel_coordinate middle = { 0, 0, 1920, 1080 };
+        ASSERT_TRUE(gu_pixel_coordinate_equals(topLeftEdge, topLeftEdge));
+        ASSERT_TRUE(gu_pixel_coordinate_equals(topRightEdge, topRightEdge));
+        ASSERT_TRUE(gu_pixel_coordinate_equals(bottomLeftEdge, bottomLeftEdge));
+        ASSERT_TRUE(gu_pixel_coordinate_equals(bottomRightEdge, bottomRightEdge));
+        ASSERT_TRUE(gu_pixel_coordinate_equals(middle, middle));
+        ASSERT_FALSE(gu_pixel_coordinate_equals(topLeftEdge, topRightEdge));
+        ASSERT_FALSE(gu_pixel_coordinate_equals(topRightEdge, bottomLeftEdge));
+        ASSERT_FALSE(gu_pixel_coordinate_equals(bottomLeftEdge, bottomRightEdge));
+        ASSERT_FALSE(gu_pixel_coordinate_equals(bottomRightEdge, middle));
     }
 
 }  // namespace

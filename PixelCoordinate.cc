@@ -58,11 +58,11 @@
 
 #include "PixelCoordinate.hpp"
 
-GU::PixelCoordinate::PixelCoordinate(): pixel_coordinate() {}
+GU::PixelCoordinate::PixelCoordinate(): gu_pixel_coordinate() {}
 
-GU::PixelCoordinate::PixelCoordinate(pixels_t t_x, pixels_t t_y, pixels_u t_resWidth, pixels_u t_resHeight): pixel_coordinate { t_x, t_y, t_resWidth, t_resHeight } {} 
+GU::PixelCoordinate::PixelCoordinate(pixels_t t_x, pixels_t t_y, pixels_u t_resWidth, pixels_u t_resHeight): gu_pixel_coordinate { t_x, t_y, t_resWidth, t_resHeight } {} 
 
-GU::PixelCoordinate::PixelCoordinate(const PixelCoordinate& other): pixel_coordinate { other.x(), other.y(), other.resWidth(), other.resHeight() } {}
+GU::PixelCoordinate::PixelCoordinate(const PixelCoordinate& other): gu_pixel_coordinate { other.x(), other.y(), other.resWidth(), other.resHeight() } {}
 
 #if __cplusplus >= 199711L
 GU::PixelCoordinate::PixelCoordinate(PixelCoordinate&& other)
@@ -113,47 +113,47 @@ GU::PixelCoordinate& GU::PixelCoordinate::operator=(PixelCoordinate&& other)
 
 pixels_t GU::PixelCoordinate::x() const
 {
-    return pixel_coordinate::x;
+    return gu_pixel_coordinate::x;
 }
 
 void GU::PixelCoordinate::set_x(const pixels_t newValue)
 {
-    pixel_coordinate::x = newValue;
+    gu_pixel_coordinate::x = newValue;
 }
 
 pixels_t GU::PixelCoordinate::y() const
 {
-    return pixel_coordinate::y;
+    return gu_pixel_coordinate::y;
 }
 
 void GU::PixelCoordinate::set_y(const pixels_t newValue)
 {
-    pixel_coordinate::y = newValue;
+    gu_pixel_coordinate::y = newValue;
 }
 
 pixels_u GU::PixelCoordinate::resWidth() const
 {
-    return pixel_coordinate::res_width;
+    return gu_pixel_coordinate::res_width;
 }
 
 void GU::PixelCoordinate::set_resWidth(const pixels_u newValue)
 {
-    pixel_coordinate::res_width = newValue;
+    gu_pixel_coordinate::res_width = newValue;
 }
 
 pixels_u GU::PixelCoordinate::resHeight() const
 {
-    return pixel_coordinate::res_height;
+    return gu_pixel_coordinate::res_height;
 }
 
 void GU::PixelCoordinate::set_resHeight(const pixels_u newValue)
 {
-    pixel_coordinate::res_height = newValue;
+    gu_pixel_coordinate::res_height = newValue;
 }
 
 bool GU::PixelCoordinate::operator==(const PixelCoordinate &other) const
 {
-    return pixel_coordinate_equals(*this, other);
+    return gu_pixel_coordinate_equals(*this, other);
 }
 
 bool GU::PixelCoordinate::operator!=(const PixelCoordinate &other) const

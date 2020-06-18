@@ -67,10 +67,10 @@ extern "C" {
 #endif
 
 /**
- * A `pixel_coordinate` represents the coordinate of a pixel
+ * A `gu_pixel_coordinate` represents the coordinate of a pixel
  * within an image.
  */
-typedef struct pixel_coordinate {
+typedef struct gu_pixel_coordinate {
 
     /**
      * The x coordinate of the pixel within the image.
@@ -100,9 +100,9 @@ typedef struct pixel_coordinate {
      */
     pixels_u res_height;
 
-} pixel_coordinate;
+} gu_pixel_coordinate;
 
-bool pixel_coordinate_equals(const pixel_coordinate lhs, const pixel_coordinate rhs);
+bool gu_pixel_coordinate_equals(const gu_pixel_coordinate lhs, const gu_pixel_coordinate rhs);
 
 #ifdef __cplusplus
 };

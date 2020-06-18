@@ -65,7 +65,7 @@
 
 namespace GU {
 
-    struct PixelCoordinate: private pixel_coordinate {
+    struct PixelCoordinate: private gu_pixel_coordinate {
 
         PixelCoordinate();
         PixelCoordinate(pixels_t, pixels_t, pixels_u, pixels_u);

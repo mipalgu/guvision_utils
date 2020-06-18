@@ -85,7 +85,7 @@ namespace CGTEST {
 
     };
 
-    void pixel_equal(const pixel_coordinate lhs, const pixel_coordinate rhs)
+    void pixel_equal(const gu_pixel_coordinate lhs, const gu_pixel_coordinate rhs)
     {
         ASSERT_EQ(lhs.x, rhs.x);
         ASSERT_EQ(lhs.y, rhs.y);
@@ -93,24 +93,24 @@ namespace CGTEST {
         ASSERT_EQ(lhs.res_height, rhs.res_height);
     }
 
-    void percent_equal(const percent_coordinate lhs, const percent_coordinate rhs)
+    void percent_equal(const gu_percent_coordinate lhs, const gu_percent_coordinate rhs)
     {
         ASSERT_EQ(lhs.x, rhs.x);
         ASSERT_EQ(lhs.y, rhs.y);
     }
 
-    void percent_near(const percent_coordinate lhs, const percent_coordinate rhs)
+    void percent_near(const gu_percent_coordinate lhs, const gu_percent_coordinate rhs)
     {
         ASSERT_LT(fabs(lhs.x - rhs.x), 0.001);
         ASSERT_LT(fabs(lhs.y - rhs.y), 0.001);
     }
 
     TEST_F(ConversionsTests, ConvertsToCorrectPercentCoordinate) {
-        const pixel_coordinate topLeftEdge = { -959, 540, 1920, 1080 };
-        const pixel_coordinate topRightEdge = { 960, 540, 1920, 1080 };
-        const pixel_coordinate bottomLeftEdge = { -959, -539, 1920, 1080 };
-        const pixel_coordinate bottomRightEdge = { 960, -539, 1920, 1080 };
-        const pixel_coordinate middle = { 0, 0, 1920, 1080 };
+        const gu_pixel_coordinate topLeftEdge = { -959, 540, 1920, 1080 };
+        const gu_pixel_coordinate topRightEdge = { 960, 540, 1920, 1080 };
+        const gu_pixel_coordinate bottomLeftEdge = { -959, -539, 1920, 1080 };
+        const gu_pixel_coordinate bottomRightEdge = { 960, -539, 1920, 1080 };
+        const gu_pixel_coordinate middle = { 0, 0, 1920, 1080 };
         percent_equal({-1.0f, 1.0f}, px_coord_to_pct_coord(topLeftEdge));
         percent_equal({1.0f, 1.0f}, px_coord_to_pct_coord(topRightEdge));
         percent_equal({-1.0f, -1.0f}, px_coord_to_pct_coord(bottomLeftEdge));
@@ -119,11 +119,11 @@ namespace CGTEST {
     }
 
     TEST_F(ConversionsTests, ConvertsToCorrectPixelCoordinate) {
-        const percent_coordinate topLeftEdge = { -1.0f, 1.0f };
-        const percent_coordinate topRightEdge = { 1.0f, 1.0f };
-        const percent_coordinate bottomLeftEdge = { -1.0f, -1.0f };
-        const percent_coordinate bottomRightEdge = { 1.0f, -1.0f };
-        const percent_coordinate middle = { 0, 0 };
+        const gu_percent_coordinate topLeftEdge = { -1.0f, 1.0f };
+        const gu_percent_coordinate topRightEdge = { 1.0f, 1.0f };
+        const gu_percent_coordinate bottomLeftEdge = { -1.0f, -1.0f };
+        const gu_percent_coordinate bottomRightEdge = { 1.0f, -1.0f };
+        const gu_percent_coordinate middle = { 0, 0 };
         pixel_equal({ -959, 540, 1920, 1080 }, pct_coord_to_px_coord(topLeftEdge, 1920, 1080));
         pixel_equal({ 960, 540, 1920, 1080 }, pct_coord_to_px_coord(topRightEdge, 1920, 1080));
         pixel_equal({ -959, -539, 1920, 1080 }, pct_coord_to_px_coord(bottomLeftEdge, 1920, 1080));

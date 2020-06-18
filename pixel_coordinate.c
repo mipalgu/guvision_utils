@@ -59,7 +59,7 @@
 #include "pixel_coordinate.h"
 #include <stdbool.h>
 
-bool pixel_coordinate_equals(const pixel_coordinate lhs, const pixel_coordinate rhs)
+bool gu_pixel_coordinate_equals(const gu_pixel_coordinate lhs, const gu_pixel_coordinate rhs)
 {
     return lhs.x == rhs.x
         && lhs.y == rhs.y

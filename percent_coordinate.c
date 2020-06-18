@@ -59,7 +59,7 @@
 #include "percent_coordinate.h"
 #include <math.h>
 
-bool percent_coordinate_equals(const percent_coordinate lhs, const percent_coordinate rhs, percent_f tolerance)
+bool gu_percent_coordinate_equals(const gu_percent_coordinate lhs, const gu_percent_coordinate rhs, percent_f tolerance)
 {
     const bool equalX = fabsf(pct_f_to_f(lhs.x) - pct_f_to_f(rhs.x)) <= pct_f_to_f(tolerance);
     const bool equalY = fabsf(pct_f_to_f(lhs.y) - pct_f_to_f(rhs.y)) <= pct_f_to_f(tolerance);

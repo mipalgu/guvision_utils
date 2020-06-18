@@ -61,23 +61,23 @@
 #include <guunits/guunits.h>
 
 
-percent_coordinate px_coord_to_pct_coord(const pixel_coordinate coord)
+gu_percent_coordinate px_coord_to_pct_coord(const gu_pixel_coordinate coord)
 {
     const pixels_t maxX = px_u_to_px_t(coord.res_width) - 1;
     const pixels_t maxY = px_u_to_px_t(coord.res_height) - 1;
     const float x = px_t_to_f(2 * coord.x - (maxX % 2)) / px_t_to_f(maxX);
     const float y = px_t_to_f(2 * coord.y - (maxY % 2)) / px_t_to_f(maxY);
-    const percent_coordinate newCoord = { f_to_pct_f(x), f_to_pct_f(y) };
+    const gu_percent_coordinate newCoord = { f_to_pct_f(x), f_to_pct_f(y) };
     return newCoord;
 }
 
 
-pixel_coordinate pct_coord_to_px_coord(percent_coordinate coord, pixels_u res_width, pixels_u res_height)
+gu_pixel_coordinate pct_coord_to_px_coord(gu_percent_coordinate coord, pixels_u res_width, pixels_u res_height)
 {
     const pixels_t maxX = px_u_to_px_t(res_width) - 1;
     const pixels_t maxY = px_u_to_px_t(res_height) - 1;
     const float pixelsX = (pct_f_to_f(coord.x) * px_t_to_f(maxX) + px_t_to_f(maxX % 2)) / 2.0f;
     const float pixelsY = (pct_f_to_f(coord.y) * px_t_to_f(maxY) + px_t_to_f(maxY % 2)) / 2.0f;
-    const pixel_coordinate newCoord = { f_to_px_t(pixelsX), f_to_px_t(pixelsY), res_width, res_height };
+    const gu_pixel_coordinate newCoord = { f_to_px_t(pixelsX), f_to_px_t(pixelsY), res_width, res_height };
     return newCoord;
 }

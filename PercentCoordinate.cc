@@ -58,11 +58,11 @@
 
 #include "PercentCoordinate.hpp"
 
-GU::PercentCoordinate::PercentCoordinate(): percent_coordinate() {}
+GU::PercentCoordinate::PercentCoordinate(): gu_percent_coordinate() {}
 
-GU::PercentCoordinate::PercentCoordinate(percent_f t_x, percent_f t_y): percent_coordinate { t_x, t_y } {} 
+GU::PercentCoordinate::PercentCoordinate(percent_f t_x, percent_f t_y): gu_percent_coordinate { t_x, t_y } {} 
 
-GU::PercentCoordinate::PercentCoordinate(const PercentCoordinate& other): percent_coordinate { other.x(), other.y() } {}
+GU::PercentCoordinate::PercentCoordinate(const PercentCoordinate& other): gu_percent_coordinate { other.x(), other.y() } {}
 
 #if __cplusplus >= 199711L
 GU::PercentCoordinate::PercentCoordinate(PercentCoordinate&& other)
@@ -103,27 +103,27 @@ GU::PercentCoordinate& GU::PercentCoordinate::operator=(PercentCoordinate&& othe
 
 percent_f GU::PercentCoordinate::x() const
 {
-    return percent_coordinate::x;
+    return gu_percent_coordinate::x;
 }
 
 void GU::PercentCoordinate::set_x(const percent_f newValue)
 {
-    percent_coordinate::x = newValue;
+    gu_percent_coordinate::x = newValue;
 }
 
 percent_f GU::PercentCoordinate::y() const
 {
-    return percent_coordinate::y;
+    return gu_percent_coordinate::y;
 }
 
 void GU::PercentCoordinate::set_y(const percent_f newValue)
 {
-    percent_coordinate::y = newValue;
+    gu_percent_coordinate::y = newValue;
 }
 
 bool GU::PercentCoordinate::operator==(const PercentCoordinate &other) const
 {
-    return percent_coordinate_equals(*this, other, 0.0001f);
+    return gu_percent_coordinate_equals(*this, other, 0.0001f);
 }
 
 bool GU::PercentCoordinate::operator!=(const PercentCoordinate &other) const

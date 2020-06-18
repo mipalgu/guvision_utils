@@ -86,16 +86,16 @@ namespace CGTEST {
     };
 
     TEST_F(PercentCoordinateTests, Equality) {
-        const percent_coordinate topLeftEdge = { -1.0f, 1.0f };
-        const percent_coordinate topRightEdge = { 1.0f, 1.0f };
-        const percent_coordinate bottomLeftEdge = { -1.0f, -1.0f };
-        const percent_coordinate bottomRightEdge = { 1.0f, -1.0f };
-        const percent_coordinate middle = { 0.0f, 0.0f };
-        ASSERT_TRUE(percent_coordinate_equals(middle, middle, 0.0001));
-        ASSERT_FALSE(percent_coordinate_equals(topLeftEdge, topRightEdge, 0.0001));
-        ASSERT_FALSE(percent_coordinate_equals(topRightEdge, bottomLeftEdge, 0.0001));
-        ASSERT_FALSE(percent_coordinate_equals(bottomLeftEdge, bottomRightEdge, 0.0001));
-        ASSERT_FALSE(percent_coordinate_equals(bottomRightEdge, middle, 0.0001));
+        const gu_percent_coordinate topLeftEdge = { -1.0f, 1.0f };
+        const gu_percent_coordinate topRightEdge = { 1.0f, 1.0f };
+        const gu_percent_coordinate bottomLeftEdge = { -1.0f, -1.0f };
+        const gu_percent_coordinate bottomRightEdge = { 1.0f, -1.0f };
+        const gu_percent_coordinate middle = { 0.0f, 0.0f };
+        ASSERT_TRUE(gu_percent_coordinate_equals(middle, middle, 0.0001));
+        ASSERT_FALSE(gu_percent_coordinate_equals(topLeftEdge, topRightEdge, 0.0001));
+        ASSERT_FALSE(gu_percent_coordinate_equals(topRightEdge, bottomLeftEdge, 0.0001));
+        ASSERT_FALSE(gu_percent_coordinate_equals(bottomLeftEdge, bottomRightEdge, 0.0001));
+        ASSERT_FALSE(gu_percent_coordinate_equals(bottomRightEdge, middle, 0.0001));
     }
 
 }  // namespace
