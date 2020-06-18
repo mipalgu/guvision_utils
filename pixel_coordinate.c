@@ -1,8 +1,8 @@
 /*
- * pixel_coordinate.h 
+ * pixel_coordinate.c 
  * guvision_utils 
  *
- * Created by Callum McColl on 18/06/2020.
+ * Created by Callum McColl on 19/06/2020.
  * Copyright © 2020 Callum McColl. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -56,56 +56,13 @@
  *
  */
 
-#ifndef DEPENDANT_COORD_H
-#define DEPENDANT_COORD_H
-
-#include <guunits/guunits.h>
+#include "pixel_coordinate.h"
 #include <stdbool.h>
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-/**
- * A `pixel_image_coordinate` represents the coordinate of a pixel
- * within an image.
- */
-typedef struct pixel_image_coordinate {
-
-    /**
-     * The x coordinate of the pixel within the image.
-     *
-     * The x coordinate must be in the range of:
-     *
-     *  -floor((res_width - 1) / 2) <= x <= ceil((res_width - 1) / 2)
-     */
-    pixels_t x;
-
-    /**
-     * The y coordinate of the pixel within the image.
-     *
-     * The y coordinate must be in the range of:
-     *
-     *  -floor((res_height - 1) / 2) <= x <= ceil((res_height - 1) / 2)
-     */
-    pixels_t y;
-
-    /**
-     * The width of the resolution of the image.
-     */
-    pixels_u res_width;
-
-    /**
-     * The height of the resolution of the image.
-     */
-    pixels_u res_height;
-
-} pixel_coordinate;
-
-bool pixel_coordinate_equals(const pixel_coordinate lhs, const pixel_coordinate rhs);
-
-#ifdef __cplusplus
-};
-#endif
-
-#endif  /* DEPENDANT_COORD_H */
+bool pixel_coordinate_equals(const pixel_coordinate lhs, const pixel_coordinate rhs)
+{
+    return lhs.x == rhs.x
+        && lhs.y == rhs.y
+        && lhs.res_width == rhs.res_width
+        && lhs.res_height == rhs.res_height;
+}

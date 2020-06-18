@@ -1,6 +1,6 @@
 /*
- * pixel_coordinate.h 
- * guvision_utils 
+ * pixel_coordinate_tests.cc 
+ * tests 
  *
  * Created by Callum McColl on 18/06/2020.
  * Copyright © 2020 Callum McColl. All rights reserved.
@@ -56,56 +56,52 @@
  *
  */
 
-#ifndef DEPENDANT_COORD_H
-#define DEPENDANT_COORD_H
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wglobal-constructors"
+#pragma clang diagnostic ignored "-Wmissing-noreturn"
+#pragma clang diagnostic ignored "-Wshift-sign-overflow"
+#pragma clang diagnostic ignored "-Wused-but-marked-unused"
+#pragma clang diagnostic ignored "-Wdeprecated"
+#pragma clang diagnostic ignored "-Wunused-parameter"
+#pragma clang diagnostic ignored "-Wsign-compare"
+#pragma clang diagnostic ignored "-Wzero-as-null-pointer-constant"
+#pragma clang diagnostic ignored "-Wfloat-equal"
 
-#include <guunits/guunits.h>
-#include <stdbool.h>
+#include <gtest/gtest.h>
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+#include <gu_util.h>
+#include "../pixel_coordinate.h"
 
-/**
- * A `pixel_image_coordinate` represents the coordinate of a pixel
- * within an image.
- */
-typedef struct pixel_image_coordinate {
+namespace CGTEST {
+    
+    class PixelCoordinateTests: public ::testing::Test {
+    protected:
+        
+        virtual void SetUp() {
+        }
+        
+        virtual void TearDown() {
+        }
 
-    /**
-     * The x coordinate of the pixel within the image.
-     *
-     * The x coordinate must be in the range of:
-     *
-     *  -floor((res_width - 1) / 2) <= x <= ceil((res_width - 1) / 2)
-     */
-    pixels_t x;
+    };
 
-    /**
-     * The y coordinate of the pixel within the image.
-     *
-     * The y coordinate must be in the range of:
-     *
-     *  -floor((res_height - 1) / 2) <= x <= ceil((res_height - 1) / 2)
-     */
-    pixels_t y;
+    TEST_F(PixelCoordinateTests, Equality) {
+        const pixel_coordinate topLeftEdge = { -959, 540, 1920, 1080 };
+        const pixel_coordinate topRightEdge = { 960, 540, 1920, 1080 };
+        const pixel_coordinate bottomLeftEdge = { -959, -539, 1920, 1080 };
+        const pixel_coordinate bottomRightEdge = { 960, -539, 1920, 1080 };
+        const pixel_coordinate middle = { 0, 0, 1920, 1080 };
+        ASSERT_TRUE(pixel_coordinate_equals(topLeftEdge, topLeftEdge));
+        ASSERT_TRUE(pixel_coordinate_equals(topRightEdge, topRightEdge));
+        ASSERT_TRUE(pixel_coordinate_equals(bottomLeftEdge, bottomLeftEdge));
+        ASSERT_TRUE(pixel_coordinate_equals(bottomRightEdge, bottomRightEdge));
+        ASSERT_TRUE(pixel_coordinate_equals(middle, middle));
+        ASSERT_FALSE(pixel_coordinate_equals(topLeftEdge, topRightEdge));
+        ASSERT_FALSE(pixel_coordinate_equals(topRightEdge, bottomLeftEdge));
+        ASSERT_FALSE(pixel_coordinate_equals(bottomLeftEdge, bottomRightEdge));
+        ASSERT_FALSE(pixel_coordinate_equals(bottomRightEdge, middle));
+    }
 
-    /**
-     * The width of the resolution of the image.
-     */
-    pixels_u res_width;
+}  // namespace
 
-    /**
-     * The height of the resolution of the image.
-     */
-    pixels_u res_height;
-
-} pixel_coordinate;
-
-bool pixel_coordinate_equals(const pixel_coordinate lhs, const pixel_coordinate rhs);
-
-#ifdef __cplusplus
-};
-#endif
-
-#endif  /* DEPENDANT_COORD_H */
+#pragma clang diagnostic pop
