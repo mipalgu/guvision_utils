@@ -85,11 +85,37 @@ namespace CGTEST {
 
     };
 
+    void pixel_equal(const pixel_coordinate lhs, const pixel_coordinate rhs)
+    {
+        ASSERT_EQ(lhs.x, rhs.x);
+        ASSERT_EQ(lhs.y, rhs.y);
+        ASSERT_EQ(lhs.res_width, rhs.res_width);
+        ASSERT_EQ(lhs.res_height, rhs.res_height);
+    }
+
+    void percent_equal(const percent_coordinate lhs, const percent_coordinate rhs)
+    {
+        ASSERT_EQ(lhs.x, rhs.x);
+        ASSERT_EQ(lhs.y, rhs.y);
+    }
+
+    void percent_near(const percent_coordinate lhs, const percent_coordinate rhs)
+    {
+        ASSERT_LT(fabs(lhs.x - rhs.x), 0.001);
+        ASSERT_LT(fabs(lhs.y - rhs.y), 0.001);
+    }
+
     TEST_F(ConversionsTests, ConvertsToCorrectPercentCoordinate) {
-        const pixel_coordinate coord = { -959, -539, 1920, 1080 };
-        const percent_coordinate newCoord = px_coord_to_pct_coord(coord);
-        ASSERT_EQ(newCoord.x, -1.0f);
-        ASSERT_EQ(newCoord.y, -1.0f);
+        const pixel_coordinate topLeftEdge = { -959, 540, 1920, 1080 };
+        const pixel_coordinate topRightEdge = { 960, 540, 1920, 1080 };
+        const pixel_coordinate bottomLeftEdge = { -959, -539, 1920, 1080 };
+        const pixel_coordinate bottomRightEdge = { 960, -539, 1920, 1080 };
+        const pixel_coordinate middle = { 0, 0, 1920, 1080 };
+        percent_equal({-1.0f, 1.0f}, px_coord_to_pct_coord(topLeftEdge));
+        percent_equal({1.0f, 1.0f}, px_coord_to_pct_coord(topRightEdge));
+        percent_equal({-1.0f, -1.0f}, px_coord_to_pct_coord(bottomLeftEdge));
+        percent_equal({1.0f, -1.0f}, px_coord_to_pct_coord(bottomRightEdge));
+        percent_near({0.0f, 0.0f}, px_coord_to_pct_coord(middle));
     }
 
 }  // namespace
