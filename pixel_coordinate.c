@@ -1,5 +1,5 @@
 /*
- * independant_image_coordinate.h 
+ * pixel_coordinate.c 
  * guvision_utils 
  *
  * Created by Callum McColl on 18/06/2020.
@@ -56,35 +56,17 @@
  *
  */
 
-#ifndef INDEPENDANT_IMAGE_COORDINATE_H
-#define INDEPENDANT_IMAGE_COORDINATE_H
+#include "pixel_coordinate.h"
 
-#include <guunits.h>
+#include <guunits/guunits.h>
 
-/**
- * A `dependant_image_coordinate` represents the coordinate of a pixel
- * within an image.
- */
-typedef struct independant_image_coord {
 
-    /**
-     * The x coordinate of the pixel within the image as a percentage.
-     *
-     * The x coordinate must be in the range of:
-     *
-     *  -1.0f <= x <= 1.0f
-     */
-    percent_f x;
-
-    /**
-     * The y coordinate of the pixel within the image as a percentage.
-     *
-     * The y coordinate must be in the range of:
-     *
-     *  -1.0f <= x <= 1.0f
-     */
-    percent_f y;
-
-} independant_image_coordinate;
-
-#endif  /* INDEPENDANT_IMAGE_COORDINATE_H */
+percent_coordinate pixel_coordinate_to_percent_coordinate(const pixel_coordinate coord)
+{
+    const pixels_t maxX = px_u_to_px_t(coord.res_width) - 1;
+    const pixels_t maxY = px_u_to_px_t(coord.res_height) - 1;
+    const float x = px_t_to_f(2 * coord.x - (maxX % 2)) / px_t_to_f(maxX);
+    const float y = px_t_to_f(2 * coord.y - (maxY % 2)) / px_t_to_f(maxY);
+    const percent_coordinate newCoord = { f_to_pct_f(x), f_to_pct_f(y) };
+    return newCoord;
+}

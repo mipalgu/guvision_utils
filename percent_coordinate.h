@@ -1,5 +1,5 @@
 /*
- * dependant_image_coordinate.h 
+ * percent_coordinate.h 
  * guvision_utils 
  *
  * Created by Callum McColl on 18/06/2020.
@@ -56,45 +56,35 @@
  *
  */
 
-#ifndef DEPENDANT_COORD_H
-#define DEPENDANT_COORD_H
+#ifndef INDEPENDANT_IMAGE_COORDINATE_H
+#define INDEPENDANT_IMAGE_COORDINATE_H
 
-#include <guunits.h>
+#include <guunits/guunits.h>
 
 /**
- * A `dependant_image_coordinate` represents the coordinate of a pixel
+ * A `percent_image_coordinate` represents the coordinate of a pixel
  * within an image.
  */
-typedef struct dependant_image_coord {
+typedef struct percent_image_coordinate {
 
     /**
-     * The x coordinate of the pixel within the image.
+     * The x coordinate of the pixel within the image as a percentage.
      *
      * The x coordinate must be in the range of:
      *
-     *  -floor((res_width - 1) / 2) <= x <= ceil((res_width - 1) / 2)
+     *  -1.0f <= x <= 1.0f
      */
-    pixel_t x;
+    percent_f x;
 
     /**
-     * The y coordinate of the pixel within the image.
+     * The y coordinate of the pixel within the image as a percentage.
      *
      * The y coordinate must be in the range of:
      *
-     *  -floor((res_height - 1) / 2) <= x <= ceil((res_height - 1) / 2)
+     *  -1.0f <= x <= 1.0f
      */
-    pixel_t y;
+    percent_f y;
 
-    /**
-     * The width of the resolution of the image.
-     */
-    pixel_u res_width;
+} percent_coordinate;
 
-    /**
-     * The height of the resolution of the image.
-     */
-    pixel_u res_height;
-
-} dependant_image_coordinate;
-
-#endif  /* DEPENDANT_COORD_H */
+#endif  /* INDEPENDANT_IMAGE_COORDINATE_H */
