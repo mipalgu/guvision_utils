@@ -56,8 +56,8 @@
  *
  */
 
-#ifndef CONVERSIONS_H
-#define CONVERSIONS_H
+#ifndef GUVISION_UTILS_CONVERSIONS_H
+#define GUVISION_UTILS_CONVERSIONS_H
 
 #include "pixel_coordinate.h"
 #include "percent_coordinate.h"
@@ -73,4 +73,4 @@ gu_pixel_coordinate pct_coord_to_px_coord(gu_percent_coordinate, pixels_u, pixel
 };
 #endif
 
-#endif  /* CONVERSIONS_H */
+#endif  /* GUVISION_UTILS_CONVERSIONS_H */
