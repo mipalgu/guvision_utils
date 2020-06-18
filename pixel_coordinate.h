@@ -67,10 +67,10 @@ extern "C" {
 #endif
 
 /**
- * A `pixel_image_coordinate` represents the coordinate of a pixel
+ * A `pixel_coordinate` represents the coordinate of a pixel
  * within an image.
  */
-typedef struct pixel_image_coordinate {
+typedef struct pixel_coordinate {
 
     /**
      * The x coordinate of the pixel within the image.

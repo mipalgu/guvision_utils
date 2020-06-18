@@ -67,10 +67,10 @@ extern "C" {
 #endif
 
 /**
- * A `percent_image_coordinate` represents the coordinate of a pixel
+ * A `percent_coordinate` represents the coordinate of a pixel
  * within an image.
  */
-typedef struct percent_image_coordinate {
+typedef struct percent_coordinate {
 
     /**
      * The x coordinate of the pixel within the image as a percentage.
