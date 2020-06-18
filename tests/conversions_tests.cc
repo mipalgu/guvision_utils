@@ -118,6 +118,19 @@ namespace CGTEST {
         percent_near({0.0f, 0.0f}, px_coord_to_pct_coord(middle));
     }
 
+    TEST_F(ConversionsTests, ConvertsToCorrectPixelCoordinate) {
+        const percent_coordinate topLeftEdge = { -1.0f, 1.0f };
+        const percent_coordinate topRightEdge = { 1.0f, 1.0f };
+        const percent_coordinate bottomLeftEdge = { -1.0f, -1.0f };
+        const percent_coordinate bottomRightEdge = { 1.0f, -1.0f };
+        const percent_coordinate middle = { 0, 0 };
+        pixel_equal({ -959, 540, 1920, 1080 }, pct_coord_to_px_coord(topLeftEdge, 1920, 1080));
+        pixel_equal({ 960, 540, 1920, 1080 }, pct_coord_to_px_coord(topRightEdge, 1920, 1080));
+        pixel_equal({ -959, -549, 1920, 1080 }, pct_coord_to_px_coord(bottomLeftEdge, 1920, 1080));
+        pixel_equal({ 960, -539, 1920, 1080 }, pct_coord_to_px_coord(bottomRightEdge, 1920, 1080));
+        pixel_equal({ 0, 0 }, pct_coord_to_px_coord(middle, 1920, 1080));
+    }
+
 }  // namespace
 
 #pragma clang diagnostic pop
