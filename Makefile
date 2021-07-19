@@ -5,7 +5,7 @@
 
 ALL_TARGETS=test robot-local
 
-C_SRCS!=ls *.c
+#C_SRCS!=ls *.c
 CC_SRCS!=ls *.cc
 ALL_HDRS!=ls *.h
 SPECIFIC_LIBS=-lguunits
