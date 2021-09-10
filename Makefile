@@ -7,6 +7,8 @@ ALL_TARGETS?=test robot-local
 
 SUPPORTED_CPP_STDS=17 20
 
+DEPENDS=gu_util
+
 CC_SRCS!=ls *.cc
 CPP_SRCS=math_fnc.cpp
 ALL_HDRS!=ls *.h
