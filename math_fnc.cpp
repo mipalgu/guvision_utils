@@ -56,10 +56,10 @@ void ROTATE_IMAGE_POINT(double &pointX, double &pointY, double rotateAngle, int 
 
 int ROUND(double d)
 {
-	if ((d - (int)d) > 0.5)
-		return (int)d + 1;
+	if ((d - static_cast<int>(d)) > 0.5)
+		return static_cast<int>(d) + 1;
 	else
-		return (int)d;
+		return static_cast<int>(d);
 }
 
 double SQ_POLAR_DISTANCE(double r1, double theta1, double r2, double theta2)

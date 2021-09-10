@@ -8,6 +8,7 @@ ALL_TARGETS?=test robot-local
 SUPPORTED_CPP_STDS=17 20
 
 CC_SRCS!=ls *.cc
+CPP_SRCS=math_fnc.cpp
 ALL_HDRS!=ls *.h
 DOC_HDRS=${ALL_HDRS}
 SPECIFIC_LIBS=-lguunits
