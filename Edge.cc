@@ -1,8 +1,8 @@
 /*
- * EdgeGateway.h 
- * guvision_utils 
+ * Edge.cc 
+ * guunits 
  *
- * Created by Callum McColl on 25/06/2019.
+ * Created by Callum McColl on 16/06/2019.
  * Copyright © 2019 Callum McColl. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -56,32 +56,17 @@
  *
  */
 
-#ifndef EDGEGATEWAY_H
-#define EDGEGATEWAY_H
-
-#include <stdbool.h>
-#include <functional>
 #include "Edge.h"
 
-struct EdgeGateway {
+Edge::Edge()
+{
+    this->set_leftPoint(Coordinate());
+    this->set_rightPoint(Coordinate());
+}
 
-    private:
-        std::function<Edge()> _fetchEdge;
-        std::function<bool()> _hasNewEdge;
-        Edge cachedEdge;
+Edge::Edge(::Coordinate leftPoint, ::Coordinate rightPoint)
+{
+    this->set_leftPoint(leftPoint);
+    this->set_rightPoint(rightPoint);
+}
 
-    public:
-
-        EdgeGateway();
-
-        EdgeGateway(std::function<Edge()> fetchEdge, std::function<bool()> hasNewEdge);
-
-        Edge fetchEdge();
-
-        bool hasNewEdge();
-
-};
-
-
-
-#endif  /* EDGEGATEWAY_H */

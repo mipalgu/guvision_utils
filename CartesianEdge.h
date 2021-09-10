@@ -1,8 +1,8 @@
 /*
- * EdgeGateway.h 
- * guvision_utils 
+ * CartesianEdge.h 
+ * guunits 
  *
- * Created by Callum McColl on 25/06/2019.
+ * Created by Callum McColl on 26/06/2019.
  * Copyright © 2019 Callum McColl. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -56,32 +56,36 @@
  *
  */
 
-#ifndef EDGEGATEWAY_H
-#define EDGEGATEWAY_H
+#ifndef CARTESIANEDGE_H
+#define CARTESIANEDGE_H
 
-#include <stdbool.h>
-#include <functional>
-#include "Edge.h"
+#include <gu_util.h>
+#include "CartesianCoordinate.h"
 
-struct EdgeGateway {
+#ifdef __cplusplus
+extern "C" {
+#endif
 
-    private:
-        std::function<Edge()> _fetchEdge;
-        std::function<bool()> _hasNewEdge;
-        Edge cachedEdge;
+typedef struct cartesian_edge
+{
+    PROPERTY(struct cartesian_coordinate, leftPoint)
+    PROPERTY(struct cartesian_coordinate, rightPoint)
+} cartesian_edge;
 
-    public:
+#ifdef __cplusplus
+};
+#endif
 
-        EdgeGateway();
+#ifdef __cplusplus
 
-        EdgeGateway(std::function<Edge()> fetchEdge, std::function<bool()> hasNewEdge);
+struct CartesianEdge: cartesian_edge
+{
 
-        Edge fetchEdge();
-
-        bool hasNewEdge();
+    CartesianEdge();
+    CartesianEdge(CartesianCoordinate leftPoint, CartesianCoordinate rightPoint);
 
 };
 
+#endif
 
-
-#endif  /* EDGEGATEWAY_H */
+#endif  /* CARTESIANEDGE_H */

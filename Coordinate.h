@@ -1,8 +1,8 @@
 /*
- * EdgeGateway.h 
- * guvision_utils 
+ * Coordinate.h 
+ * Movement 
  *
- * Created by Callum McColl on 25/06/2019.
+ * Created by Callum McColl on 06/04/2019.
  * Copyright © 2019 Callum McColl. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -56,32 +56,35 @@
  *
  */
 
-#ifndef EDGEGATEWAY_H
-#define EDGEGATEWAY_H
+#ifndef COORDINATE_H
+#define COORDINATE_H
 
-#include <stdbool.h>
-#include <functional>
-#include "Edge.h"
+#include <gu_util.h>
+#include <guunits/guunits.h>
 
-struct EdgeGateway {
+#ifdef __cplusplus
+extern "C" {
+#endif
 
-    private:
-        std::function<Edge()> _fetchEdge;
-        std::function<bool()> _hasNewEdge;
-        Edge cachedEdge;
+typedef struct gu_coordinate
+{
+    PROPERTY(degrees_t, direction)
+    PROPERTY(centimetres_u, distance)
+} gu_coordinate;
 
-    public:
+#ifdef __cplusplus
+};
+#endif
 
-        EdgeGateway();
+#ifdef __cplusplus
 
-        EdgeGateway(std::function<Edge()> fetchEdge, std::function<bool()> hasNewEdge);
+struct Coordinate: gu_coordinate {
 
-        Edge fetchEdge();
-
-        bool hasNewEdge();
+    Coordinate();
+    Coordinate(degrees_t direction, centimetres_u distance);
 
 };
 
+#endif
 
-
-#endif  /* EDGEGATEWAY_H */
+#endif  /* COORDINATE_H */

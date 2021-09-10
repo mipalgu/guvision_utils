@@ -62,7 +62,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <functional>
-#include <guunits/Edge.h>
+#include "Edge.h"
 #include "EdgeGateway.h"
 
 struct EdgeController

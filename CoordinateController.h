@@ -62,7 +62,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <functional>
-#include <guunits/Coordinate.h>
+#include "Coordinate.h"
 #include "CoordinateGateway.h"
 
 struct CoordinateController

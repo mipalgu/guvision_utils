@@ -1,8 +1,8 @@
 /*
- * EdgeGateway.h 
- * guvision_utils 
+ * Coordinate.cc 
+ * guunits 
  *
- * Created by Callum McColl on 25/06/2019.
+ * Created by Callum McColl on 10/06/2019.
  * Copyright © 2019 Callum McColl. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -56,32 +56,18 @@
  *
  */
 
-#ifndef EDGEGATEWAY_H
-#define EDGEGATEWAY_H
+#include "Coordinate.h"
 
-#include <stdbool.h>
-#include <functional>
-#include "Edge.h"
+Coordinate::Coordinate()
+{
+    this->_direction = 0;
+    this->_distance = 0;
+}
 
-struct EdgeGateway {
-
-    private:
-        std::function<Edge()> _fetchEdge;
-        std::function<bool()> _hasNewEdge;
-        Edge cachedEdge;
-
-    public:
-
-        EdgeGateway();
-
-        EdgeGateway(std::function<Edge()> fetchEdge, std::function<bool()> hasNewEdge);
-
-        Edge fetchEdge();
-
-        bool hasNewEdge();
-
-};
+Coordinate::Coordinate(degrees_t direction, centimetres_u distance)
+{
+    this->_direction = direction;
+    this->_distance = distance;
+}
 
 
-
-#endif  /* EDGEGATEWAY_H */
