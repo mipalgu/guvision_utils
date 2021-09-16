@@ -1,0 +1,62 @@
+name: Documentation
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-documentation:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Install Ninja
+        run: sudo apt install ninja-build
+
+      - name: Clone gu_util
+        uses: actions/checkout@v2
+        with:
+          repository: mipalgu/gu_util
+          path: gu_util
+
+      - name: Install gu_util
+        run: |
+          cd gu_util
+          mkdir build
+          cd build
+          cmake -G Ninja ..
+          ninja
+          sudo ninja install
+
+      - name: Clone guunits
+        uses: actions/checkout@v2
+        with:
+          repository: mipalgu/guunits
+          path: guunits
+
+      - name: Install guunits
+        run: |
+          cd guunits/guunits
+          mkdir build
+          cd build
+          cmake -G Ninja ..
+          ninja
+          sudo ninja install
+
+      - name: Clone guvision_utils
+        uses: actions/checkout@v2
+        with:
+          repository: mipalgu/guvision_utils
+          path: guvision_utils
+
+      - name: Doxygen
+        uses: mattnotmitt/doxygen-action@v1.1.0
+        with:
+          doxyfile-path: ./Doxyfile
+          working-directory: ./guvision_utils
+
+      - name: Page Deployment
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ${{github.workspace}}/guvision_utils/documentation/html
